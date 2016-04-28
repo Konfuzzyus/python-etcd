@@ -192,3 +192,7 @@ class TestClientLock(TestClientApiBase):
         self.locker.is_taken = True
         self.locker.release()
         self.assertFalse(self.locker.is_taken)
+    
+    def test_context_manager(self):
+        with self.locker as my_lock:
+            self.assertFalse(my_lock.is_acquired())
